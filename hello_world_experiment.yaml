@@ -1,0 +1,9 @@
+name: hello_world_standard_flow
+flow: flows/hello_world
+
+datasets:
+- name: hello_world_dataset
+  source: ./data/hello_world.jsonl
+  description: "Joke dataset"
+  mappings:
+    joke_topic: ${data.topic}

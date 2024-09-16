@@ -1,0 +1,17 @@
+{
+  "package": {},
+  "code": {
+    "joke_generator.py": {
+      "type": "python",
+      "inputs": {
+        "joke_topic": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "joke_generator.py",
+      "function": "joke_generator"
+    }
+  }
+}

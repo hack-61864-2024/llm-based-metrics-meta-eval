@@ -1,0 +1,16 @@
+inputs:
+  joke_topic:
+    type: string
+    default: watermelon
+outputs:
+  joke_output:
+    type: string
+    reference: ${joke_generator.output}
+nodes:
+- name: joke_generator
+  type: python
+  source:
+    type: code
+    path: joke_generator.py
+  inputs:
+    joke_topic: ${inputs.joke_topic}

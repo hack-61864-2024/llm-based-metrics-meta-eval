@@ -1,0 +1,11 @@
+{
+  "nodes": {
+    "joke_generator": {
+      "variant_0": {
+        "inputs": {
+          "joke_topic": []
+        }
+      }
+    }
+  }
+}
