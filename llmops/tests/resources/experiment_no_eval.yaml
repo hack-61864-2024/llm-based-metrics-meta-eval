@@ -1,0 +1,12 @@
+name: exp
+flow: exp_flow
+
+datasets:
+- name: ds1
+  source: ds1_source
+  mappings:
+    ds1_input: "ds1_mapping"
+- name: ds2
+  source: ds2_source
+  mappings:
+    ds2_input: "ds2_mapping"

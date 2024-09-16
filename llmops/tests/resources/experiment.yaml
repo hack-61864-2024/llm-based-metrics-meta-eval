@@ -1,0 +1,34 @@
+name: exp
+flow: exp_flow
+
+datasets:
+- name: ds1
+  source: ds1_source
+  mappings:
+    ds1_input: "ds1_mapping"
+- name: ds2
+  source: ds2_source
+  mappings:
+    ds2_input: "ds2_mapping"
+
+evaluators:
+- name: eval1
+  datasets:
+  - name: ds1
+    mappings:
+      ds1_input: "ds1_mapping"
+      ds1_extra: "ds1_extra_mapping"
+  - name: ds2
+    mappings:
+      ds2_extra: "ds2_extra_mapping"
+- name: eval2
+  datasets:
+  - name: ds2
+    mappings:
+      ds2_input: "ds2_diff_mapping"
+
+metrics:
+- name: metric1
+  minimum_value: 0.76
+- name: metric2
+  minimum_value: 0.53

@@ -1,0 +1,82 @@
+# <name>
+# Defines the experiment name which is: 
+#   1. Used as the experiment name of Azure ML jobs.
+#   2. Used in the job names of the Azure ML jobs.
+
+name: <experiment-name>
+
+# <flow>
+# Defines the standard flow of the experiment. 
+# If the variable is not set, the experiment name is used. 
+# If it is set, it should be the path to the folder containing the Prompt Flow files
+# (including flow.dag.yaml).
+#
+# Note: It is recommended to keep all flow folders (standard and evaluators) in a 
+# common "flows" folder. If that structure is used, the name of the flow folder can 
+# can be used as the flow_name instead of the path to it. The library will 
+# automatically check the flows directory (i.e., "flows/<flow_name>") first to 
+# look for the standard flow.
+
+flow: <flow_name_or_path>
+
+# <datasets>
+# Defines the datasets used for the standard flow in this experiment.
+# Each dataset listed will be used to run the standard flow; it can also be used
+# to run one or more of the evaluation flows (see below). 
+# If the dataset is referencing a local dataset, it will be uploaded to Azure ML.
+#
+# Properties of a dataset. 
+# - name: the unique name used to reference the dataset.
+#   source: reference to an existing dataset in Azure ML <azureml:$name:$version> or path to local dataset.
+#   mappings: the mapping from the input of the standard Prompt Flow flow, to the column
+#          name of the dataset where the input will be read from. Must use syntax 
+#          `${data.<column_name>}`.
+
+datasets:
+- name: <dataset_0_name>
+  source: ./path/to/dataset.jsonl
+  mappings:
+    <flow_input_name>: "${data.<column_name>}"
+- name: <dataset_1_name>
+  source: azureml:<dataset_name>:<dataset_version>
+  mappings:
+    <flow_input_name>: "${data.<column_name>}"
+
+
+# <evaluators>
+# Defines the evaluators used in the experiment. Each evaluator is a Prompt Flow flow. 
+# Each evaluator requires a dataset. The dataset must already be defined above (meaning 
+# it was used to run the standard flow). The result of the standard flow with the matching
+# dataset is used as input to the evaluation flow.
+#
+# Properties of an evaluator
+# - name: The name
+#   flow: The path to the flow folder. As noted above, the library will automatically check the 
+#         flows directory (i.e., "flows/$flow") first to look for the evaluator flow.
+#   datasets:
+#   - name: name of the dataset used. Must match the unique name of one of the datasets 
+#         listed above.
+#     mappings: the mapping from the input of the evaluation Prompt Flow flow, to the column
+#         name of the dataset where the input will be read from OR to the output of the 
+#         standard run using the same dataset. Must use syntax `${data.<column_name>}` or 
+#         "${run.outputs.<output_name>}".
+
+evaluators:
+- name: <evaluator_0_name>
+  flow: <evaluator_0_flow>
+  datasets:
+  - name: <dataset_0_name>
+    mappings:
+      flow_input_0_name: "${data.<column_0_name>}"
+      flow_input_1_name: "${data.<column_1_name>}"
+  - name: <dataset_1_name>
+    mappings:
+      flow_input_0_name: "${data.<column_0_name>}"
+      flow_input_1_name: "${data.<column_1_name>}"
+- name: <evaluator_1_name>
+  flow: <evaluator_1_flow>
+  datasets:
+  - name: <dataset_0_name>
+    mappings:
+      flow_input_0_name: "${data.<column_0_name>}"
+      flow_input_1_name: "${data.<column_1_name>}"
