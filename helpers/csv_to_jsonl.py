@@ -6,7 +6,7 @@ import sys
 
 
 def csv_to_jsonl(csv_file, jsonl_file):
-    with open(csv_file, "r") as f:
+    with open(csv_file, "r", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
         with open(jsonl_file, "w") as f:
             # Only read the first 50 rows
