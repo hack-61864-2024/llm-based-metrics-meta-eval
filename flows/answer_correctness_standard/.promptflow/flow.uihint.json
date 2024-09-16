@@ -1,0 +1,13 @@
+{
+  "nodes": {
+    "get_answer_correctness_report": {
+      "variant_0": {
+        "inputs": {
+          "question": [],
+          "answer": [],
+          "ground_truth": []
+        }
+      }
+    }
+  }
+}

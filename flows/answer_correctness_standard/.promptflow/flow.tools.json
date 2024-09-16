@@ -1,0 +1,27 @@
+{
+  "package": {},
+  "code": {
+    "get_answer_correctness_report.py": {
+      "type": "python",
+      "inputs": {
+        "question": {
+          "type": [
+            "string"
+          ]
+        },
+        "answer": {
+          "type": [
+            "string"
+          ]
+        },
+        "ground_truth": {
+          "type": [
+            "list"
+          ]
+        }
+      },
+      "source": "get_answer_correctness_report.py",
+      "function": "get_answer_correctness_report"
+    }
+  }
+}
