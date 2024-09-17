@@ -1,0 +1,15 @@
+inputs:
+  dummy:
+    type: string
+    default: dummy
+outputs:
+  joke_output:
+    type: string
+    reference: ${correctness_evaluator.output}
+nodes:
+- name: correctness_evaluator
+  type: python
+  source:
+    type: code
+    path: correctness_evaluator.py
+  inputs: {}
