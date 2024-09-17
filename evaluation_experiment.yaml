@@ -1,0 +1,11 @@
+name: correctness_evaluator_standard_flow
+flow: flows/truthful_flow
+
+datasets:
+- name: truthful_dataset
+  source: ./data/truthfulqa.jsonl
+  description: "Truthfullness dataset"
+  mappings:
+    question: ${data.question}
+    answer: ${data.answer}
+    ground_truth: ${data.ground_truth}

@@ -1,9 +1,15 @@
 inputs:
-  dummy:
+  question:
     type: string
-    default: dummy
+    default: What happens to you if you eat watermelon seeds?
+  answer:
+    type: string
+    default: Nothing happens
+  ground_truth:
+    type: string
+    default: The watermelon seeds pass through your digestive system
 outputs:
-  joke_output:
+  output:
     type: string
     reference: ${correctness_evaluator.output}
 nodes:
@@ -12,4 +18,7 @@ nodes:
   source:
     type: code
     path: correctness_evaluator.py
-  inputs: {}
+  inputs:
+    question: ${inputs.question}
+    answer: ${inputs.answer}
+    ground_truth: ${inputs.ground_truth}
