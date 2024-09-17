@@ -1,6 +1,6 @@
 import pandas as pd
 
-parquetpath = './test-00000-of-00001.parquet' # using data from https://huggingface.co/datasets/MichaelR207/enron_qa_0822  test-00000-of-00001.parquet
+data_path = './test-00000-of-00001.parquet' # using data from https://huggingface.co/datasets/MichaelR207/enron_qa_0822  test-00000-of-00001.parquet
 
 def load_enron():
     """
@@ -20,7 +20,7 @@ def load_enron():
     """
 
     # Read the Parquet file
-    df = pd.read_parquet(parquetpath)
+    df = pd.read_parquet(data_path)
     # fulldata = df.to_dict(orient='records') # DEBUG: Convert DataFrame to list of dictionaries (records format)
 
 
