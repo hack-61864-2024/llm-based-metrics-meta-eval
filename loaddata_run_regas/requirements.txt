@@ -1,0 +1,8 @@
+# Environment variables
+python-dotenv
+
+# Ragas
+ragas
+
+# For reading parquet
+fastparquet
