@@ -1,7 +1,5 @@
-parquetpath = './test-00000-of-00001.parquet' # using data from https://huggingface.co/datasets/MichaelR207/enron_qa_0822  test-00000-of-00001.parquet
-
 from configure_azure import configure_azure 
-from loaddata_run_regas.data_enron import load_enron
+from data_enron import load_enron
 
 azure_model, azure_embeddings = configure_azure()
 transformed_df = load_enron()
