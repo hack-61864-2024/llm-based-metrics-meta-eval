@@ -4,7 +4,7 @@ parquetpath = './test-00000-of-00001.parquet' # using data from https://huggingf
 
 def load_enron():
     """
-    Loads the Enron dataset from a Parquet file and transforms it to a format expected by Regas.
+    Loads the Enron QA dataset from a Parquet file and transforms it to a format expected by Regas.
 
     The function reads a Parquet file containing the Enron_QA dataset, processes the data to 
     match the input format required by Regas, and returns a transformed DataFrame.
@@ -20,7 +20,7 @@ def load_enron():
     """
 
     # Read the Parquet file
-    df = pd.read_parquet('test-00000-of-00001.parquet')
+    df = pd.read_parquet(parquetpath)
     # fulldata = df.to_dict(orient='records') # DEBUG: Convert DataFrame to list of dictionaries (records format)
 
 

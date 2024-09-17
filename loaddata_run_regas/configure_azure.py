@@ -29,11 +29,11 @@ def configure_azure():
 
     
     azure_configs = {
-    "base_url": os.getenv('AZURE_OPENAI_ENDPOINT'),
-    "model_deployment": os.getenv('AZURE_OPENAI_MODEL_DEPLOYMENT'),
-    "model_name": os.getenv('AZURE_OPENAI_MODEL_NAME'),
-    "embedding_deployment": os.getenv('AZURE_OPENAI_EMBEDDING_DEPLOYMENT'),
-    "embedding_name": os.getenv('AZURE_OPENAI_EMBEDDING_NAME'),
+        "base_url": os.getenv('AZURE_OPENAI_ENDPOINT'),
+        "model_deployment": os.getenv('AZURE_OPENAI_MODEL_DEPLOYMENT'),
+        "model_name": os.getenv('AZURE_OPENAI_MODEL_NAME'),
+        "embedding_deployment": os.getenv('AZURE_OPENAI_EMBEDDING_DEPLOYMENT'),
+        "embedding_name": os.getenv('AZURE_OPENAI_EMBEDDING_NAME'),
     }
 
     azure_model = AzureChatOpenAI(
