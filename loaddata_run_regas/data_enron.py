@@ -8,6 +8,8 @@ def load_enron():
 
     The function reads a Parquet file containing the Enron_QA dataset, processes the data to 
     match the input format required by Regas, and returns a transformed DataFrame.
+    
+    Assumption is that gold_answer = ground trough. and alternate_answers is the given answer.
 
     Returns:
         pandas.DataFrame: A DataFrame with columns 'question', 'answer', 'contexts', and 'ground_truth'.
