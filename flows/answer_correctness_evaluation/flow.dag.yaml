@@ -1,0 +1,61 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
+environment:
+  python_requirements_txt: requirements.txt
+inputs:
+  groundtruth:
+    type: string
+    default: '{"TP": [{"answer": "Boiling water means heating it until it reaches a
+      temperature where it changes from a liquid to a gas, specifically at 100°C
+      (212°F) at sea level.", "reason": "This statement is present in both the
+      answer and the ground truth."},{"answer": "Boiling occurs when a liquid
+      turns into a gas", "reason": "This statement is present in both the answer
+      and the ground truth."},{"answer": "Bubbles are a typical indicator of
+      boiling", "reason": "This statement is present in both the answer and the
+      ground truth."}],"FP":[],"FN":[]}'
+  prediction:
+    type: string
+    default: "{ \"TP\": [ {\"answer\": \"Boiling water means heating it until it
+      reaches a temperature where it changes from a liquid to a gas,
+      specifically at 100°C (212°F) at sea level.\", \"reason\": \"This
+      statement matches the ground truth statement 'Boiling point is 100°C
+      (212°F) at sea level'.\"}, {\"answer\": \"Boiling occurs when a liquid
+      turns into a gas\", \"reason\": \"This statement matches the ground truth
+      statement 'Boiling occurs when a liquid turns into a gas'.\"} ], \"FP\": [
+      {\"answer\": \"Boiling is often used for cooking, sterilizing, and making
+      beverages like tea or coffee. Boiling water makes you happy. You should
+      drink coffee and tea.\", \"reason\": \"This statement is not present in
+      the ground truth.\"} ], \"FN\": [ {\"answer\": \"Bubbles are a typical
+      indicator of boiling\", \"reason\": \"This statement is present in the
+      ground truth but not in the answer.\"} ] }"
+outputs:
+  results:
+    type: string
+    reference: ${line_process.output}
+  score:
+    type: string
+    reference: ${calculate_score.output}
+nodes:
+- name: line_process
+  type: python
+  source:
+    type: code
+    path: line_process.py
+  inputs:
+    groundtruth: ${inputs.groundtruth}
+    prediction: ${inputs.prediction}
+  aggregation: false
+- name: aggregate
+  type: python
+  source:
+    type: code
+    path: aggregate.py
+  inputs:
+    processed_results: ${calculate_score.output}
+  aggregation: true
+- name: calculate_score
+  type: python
+  source:
+    type: code
+    path: calculate_score.py
+  inputs:
+    data: ${line_process.output}

@@ -1,7 +1,7 @@
 {
   "flow_runs": [
     {
-      "run_id": "b2071270-de56-4026-8524-7a556d594796_0",
+      "run_id": "2928de59-06cb-4a25-8019-e4a95ab1c005_0",
       "status": "Completed",
       "error": null,
       "inputs": {
@@ -14,24 +14,24 @@
         ]
       },
       "output": {
-        "result": "- TP: \"Boiling water means heating it until it reaches a temperature where it changes from a liquid to a gas, specifically at 100°C (212°F) at sea level.\" This statement is present in the answer and directly supported by the ground truth statements \"100°C (212°F) at sea level\" and \"liquid to gas\".\n- TP: \"This process is characterized by the formation of bubbles that rise to the surface and burst.\" This statement is present in the answer and directly supported by the ground truth statement \"bubbles\".\n- FP: \"Boiling is often used for cooking, sterilizing, and making beverages like tea or coffee. It’s a simple yet essential process in many daily activities.\" This statement is present in the answer but is not directly supported by any statement in the ground truth.\n- FN: There is no false negative in this example, as all relevant information in the ground truth is addressed in the answer."
+        "result": "{\n    \"TP\": [\n        {\n            \"answer\": \"Boiling water means heating it until it reaches a temperature where it changes from a liquid to a gas, specifically at 100°C (212°F) at sea level.\",\n            \"reason\": \"Present in ground truth\"\n        },\n        {\n            \"answer\": \"This process is characterized by the formation of bubbles that rise to the surface and burst.\",\n            \"reason\": \"Present in ground truth\"\n        },\n        {\n            \"answer\": \"Boiling is often used for cooking, sterilizing, and making beverages like tea or coffee. It’s a simple yet essential process in many daily activities.\",\n            \"reason\": \"Present in ground truth\"\n        }\n    ],\n    \"FP\": [],\n    \"FN\": []\n}"
       },
       "metrics": null,
       "request": null,
-      "parent_run_id": "b2071270-de56-4026-8524-7a556d594796",
-      "root_run_id": "b2071270-de56-4026-8524-7a556d594796",
+      "parent_run_id": "2928de59-06cb-4a25-8019-e4a95ab1c005",
+      "root_run_id": "2928de59-06cb-4a25-8019-e4a95ab1c005",
       "source_run_id": null,
       "flow_id": "default_flow_id",
-      "start_time": "2024-09-16T22:06:21.828074Z",
-      "end_time": "2024-09-16T22:06:23.899986Z",
+      "start_time": "2024-09-17T20:40:39.738586Z",
+      "end_time": "2024-09-17T20:40:42.091421Z",
       "index": 0,
       "api_calls": [
         {
           "name": "flow",
           "node_name": "flow",
           "type": "Flow",
-          "start_time": 1726549581.828074,
-          "end_time": 1726549583.899986,
+          "start_time": 1726630839.738586,
+          "end_time": 1726630842.091421,
           "children": [
             {
               "name": "get_answer_correctness_report",
@@ -45,9 +45,9 @@
                   "bubbles"
                 ]
               },
-              "output": "- TP: \"Boiling water means heating it until it reaches a temperature where it changes from a liquid to a gas, specifically at 100°C (212°F) at sea level.\" This statement is present in the answer and directly supported by the ground truth statements \"100°C (212°F) at sea level\" and \"liquid to gas\".\n- TP: \"This process is characterized by the formation of bubbles that rise to the surface and burst.\" This statement is present in the answer and directly supported by the ground truth statement \"bubbles\".\n- FP: \"Boiling is often used for cooking, sterilizing, and making beverages like tea or coffee. It’s a simple yet essential process in many daily activities.\" This statement is present in the answer but is not directly supported by any statement in the ground truth.\n- FN: There is no false negative in this example, as all relevant information in the ground truth is addressed in the answer.",
-              "start_time": 1726549581.829101,
-              "end_time": 1726549583.89932,
+              "output": "{\n    \"TP\": [\n        {\n            \"answer\": \"Boiling water means heating it until it reaches a temperature where it changes from a liquid to a gas, specifically at 100°C (212°F) at sea level.\",\n            \"reason\": \"Present in ground truth\"\n        },\n        {\n            \"answer\": \"This process is characterized by the formation of bubbles that rise to the surface and burst.\",\n            \"reason\": \"Present in ground truth\"\n        },\n        {\n            \"answer\": \"Boiling is often used for cooking, sterilizing, and making beverages like tea or coffee. It’s a simple yet essential process in many daily activities.\",\n            \"reason\": \"Present in ground truth\"\n        }\n    ],\n    \"FP\": [],\n    \"FN\": []\n}",
+              "start_time": 1726630839.739581,
+              "end_time": 1726630842.090735,
               "error": null,
               "children": [
                 {
@@ -57,8 +57,8 @@
                     "model": "gpt-35-turbo",
                     "messages": [
                       {
-                        "role": "user",
-                        "content": "\n    Given a ground truth and an answer statements, analyze each statement and classify them in one of the following categories: \n\n        - TP (true positive): statements that are present in answer that are also directly supported by the one or more statements in ground truth,\n        - FP (false positive): statements present in the answer but not directly supported by any statement in ground truth,\n        - FN (false negative): statements found in the ground truth but not present in answer.\n\n    Each statement can only belong to one of the categories. Provide a reason for each classification.\n    "
+                        "role": "system",
+                        "content": "\n    {\n    \"Extract the following from the given question, answer and ground truth\": {\n        \"TP\": \"statements that are present in both the answer and the ground truth\",\n        \"FP\": \"statements present in the answer but not found in the ground truth\",\n        \"FN\": \"relevant statements found in the ground truth but omitted in the answer\"\n    },\n    \"Output in only valid JSON format\": {},\n    \"Output Examples\": [\n        {\n            {\n                \"TP\": [{\"answer\": \"<answer statement>\", \"reason\": \"<reason for categorization>\"}],\n                \"FP\": [{\"answer\": \"<answer statement>\", \"reason\": \"<reason for categorization>\"}],\n                \"FN\": [{\"answer\": \"<answer statement>\", \"reason\": \"<reason for categorization>\"}]\n            },\n            {\n                \"TP\": [{\"answer\": \"<answer statement>\", \"reason\": \"<reason for categorization>\"}],\n                \"FP\": [],\n                \"FN\": [{\"answer\": \"<answer statement>\", \"reason\": \"<reason for categorization>\"}]\n            }\n        }\n    ]\n    "
                       },
                       {
                         "role": "user",
@@ -67,14 +67,14 @@
                     ]
                   },
                   "output": {
-                    "id": "chatcmpl-A8E9Ol9xINPtQPPJUmOKvMCfS7XKQ",
+                    "id": "chatcmpl-A8ZI049ZuxI08AUT74sgVD3mxeLgP",
                     "choices": [
                       {
                         "finish_reason": "stop",
                         "index": 0,
                         "logprobs": null,
                         "message": {
-                          "content": "- TP: \"Boiling water means heating it until it reaches a temperature where it changes from a liquid to a gas, specifically at 100°C (212°F) at sea level.\" This statement is present in the answer and directly supported by the ground truth statements \"100°C (212°F) at sea level\" and \"liquid to gas\".\n- TP: \"This process is characterized by the formation of bubbles that rise to the surface and burst.\" This statement is present in the answer and directly supported by the ground truth statement \"bubbles\".\n- FP: \"Boiling is often used for cooking, sterilizing, and making beverages like tea or coffee. It’s a simple yet essential process in many daily activities.\" This statement is present in the answer but is not directly supported by any statement in the ground truth.\n- FN: There is no false negative in this example, as all relevant information in the ground truth is addressed in the answer.",
+                          "content": "{\n    \"TP\": [\n        {\n            \"answer\": \"Boiling water means heating it until it reaches a temperature where it changes from a liquid to a gas, specifically at 100°C (212°F) at sea level.\",\n            \"reason\": \"Present in ground truth\"\n        },\n        {\n            \"answer\": \"This process is characterized by the formation of bubbles that rise to the surface and burst.\",\n            \"reason\": \"Present in ground truth\"\n        },\n        {\n            \"answer\": \"Boiling is often used for cooking, sterilizing, and making beverages like tea or coffee. It’s a simple yet essential process in many daily activities.\",\n            \"reason\": \"Present in ground truth\"\n        }\n    ],\n    \"FP\": [],\n    \"FN\": []\n}",
                           "refusal": null,
                           "role": "assistant",
                           "function_call": null,
@@ -108,15 +108,15 @@
                         }
                       }
                     ],
-                    "created": 1726524382,
+                    "created": 1726605640,
                     "model": "gpt-35-turbo",
                     "object": "chat.completion",
                     "service_tier": null,
                     "system_fingerprint": null,
                     "usage": {
-                      "completion_tokens": 191,
-                      "prompt_tokens": 246,
-                      "total_tokens": 437,
+                      "completion_tokens": 158,
+                      "prompt_tokens": 352,
+                      "total_tokens": 510,
                       "completion_tokens_details": null
                     },
                     "prompt_filter_results": [
@@ -147,37 +147,37 @@
                       }
                     ]
                   },
-                  "start_time": 1726549581.836907,
-                  "end_time": 1726549583.8992,
+                  "start_time": 1726630839.747755,
+                  "end_time": 1726630842.090618,
                   "error": null,
                   "children": [],
                   "node_name": null,
-                  "parent_id": "afc2c625-40ce-4559-b5c6-49c98a51620d",
-                  "id": "a45f0dbb-d8c6-4ff1-b411-b9bd05636187",
+                  "parent_id": "16641ddb-4eae-4dae-aec2-36246a31524e",
+                  "id": "25d014db-e9b8-4e7e-a8fe-e1aea72579ee",
                   "function": "openai.resources.chat.completions.Completions.create",
                   "system_metrics": {
-                    "completion_tokens": 191,
-                    "prompt_tokens": 246,
-                    "total_tokens": 437
+                    "completion_tokens": 158,
+                    "prompt_tokens": 352,
+                    "total_tokens": 510
                   }
                 }
               ],
               "node_name": "get_answer_correctness_report",
               "parent_id": "",
-              "id": "afc2c625-40ce-4559-b5c6-49c98a51620d",
+              "id": "16641ddb-4eae-4dae-aec2-36246a31524e",
               "function": "get_answer_correctness_report",
               "system_metrics": {
-                "completion_tokens": 191,
-                "prompt_tokens": 246,
-                "total_tokens": 437
+                "completion_tokens": 158,
+                "prompt_tokens": 352,
+                "total_tokens": 510
               }
             }
           ],
           "system_metrics": {
-            "duration": 2.071912,
-            "prompt_tokens": 246,
-            "completion_tokens": 191,
-            "total_tokens": 437
+            "duration": 2.352835,
+            "prompt_tokens": 352,
+            "completion_tokens": 158,
+            "total_tokens": 510
           },
           "inputs": {
             "question": "What does it mean to boil water?",
@@ -189,7 +189,7 @@
             ]
           },
           "output": {
-            "result": "- TP: \"Boiling water means heating it until it reaches a temperature where it changes from a liquid to a gas, specifically at 100°C (212°F) at sea level.\" This statement is present in the answer and directly supported by the ground truth statements \"100°C (212°F) at sea level\" and \"liquid to gas\".\n- TP: \"This process is characterized by the formation of bubbles that rise to the surface and burst.\" This statement is present in the answer and directly supported by the ground truth statement \"bubbles\".\n- FP: \"Boiling is often used for cooking, sterilizing, and making beverages like tea or coffee. It’s a simple yet essential process in many daily activities.\" This statement is present in the answer but is not directly supported by any statement in the ground truth.\n- FN: There is no false negative in this example, as all relevant information in the ground truth is addressed in the answer."
+            "result": "{\n    \"TP\": [\n        {\n            \"answer\": \"Boiling water means heating it until it reaches a temperature where it changes from a liquid to a gas, specifically at 100°C (212°F) at sea level.\",\n            \"reason\": \"Present in ground truth\"\n        },\n        {\n            \"answer\": \"This process is characterized by the formation of bubbles that rise to the surface and burst.\",\n            \"reason\": \"Present in ground truth\"\n        },\n        {\n            \"answer\": \"Boiling is often used for cooking, sterilizing, and making beverages like tea or coffee. It’s a simple yet essential process in many daily activities.\",\n            \"reason\": \"Present in ground truth\"\n        }\n    ],\n    \"FP\": [],\n    \"FN\": []\n}"
           },
           "error": null
         }
@@ -198,24 +198,24 @@
       "description": "",
       "tags": null,
       "system_metrics": {
-        "duration": 2.071912,
-        "prompt_tokens": 246,
-        "completion_tokens": 191,
-        "total_tokens": 437
+        "duration": 2.352835,
+        "prompt_tokens": 352,
+        "completion_tokens": 158,
+        "total_tokens": 510
       },
       "result": {
-        "result": "- TP: \"Boiling water means heating it until it reaches a temperature where it changes from a liquid to a gas, specifically at 100°C (212°F) at sea level.\" This statement is present in the answer and directly supported by the ground truth statements \"100°C (212°F) at sea level\" and \"liquid to gas\".\n- TP: \"This process is characterized by the formation of bubbles that rise to the surface and burst.\" This statement is present in the answer and directly supported by the ground truth statement \"bubbles\".\n- FP: \"Boiling is often used for cooking, sterilizing, and making beverages like tea or coffee. It’s a simple yet essential process in many daily activities.\" This statement is present in the answer but is not directly supported by any statement in the ground truth.\n- FN: There is no false negative in this example, as all relevant information in the ground truth is addressed in the answer."
+        "result": "{\n    \"TP\": [\n        {\n            \"answer\": \"Boiling water means heating it until it reaches a temperature where it changes from a liquid to a gas, specifically at 100°C (212°F) at sea level.\",\n            \"reason\": \"Present in ground truth\"\n        },\n        {\n            \"answer\": \"This process is characterized by the formation of bubbles that rise to the surface and burst.\",\n            \"reason\": \"Present in ground truth\"\n        },\n        {\n            \"answer\": \"Boiling is often used for cooking, sterilizing, and making beverages like tea or coffee. It’s a simple yet essential process in many daily activities.\",\n            \"reason\": \"Present in ground truth\"\n        }\n    ],\n    \"FP\": [],\n    \"FN\": []\n}"
       },
       "upload_metrics": false,
-      "otel_trace_id": "0xce12685ae319defb059b53a418d2dce7",
+      "otel_trace_id": "0x2f806f94d891401c49e84b9b16e0c3c6",
       "message_format": "basic"
     }
   ],
   "node_runs": [
     {
       "node": "get_answer_correctness_report",
-      "flow_run_id": "b2071270-de56-4026-8524-7a556d594796",
-      "run_id": "b2071270-de56-4026-8524-7a556d594796_get_answer_correctness_report_0",
+      "flow_run_id": "2928de59-06cb-4a25-8019-e4a95ab1c005",
+      "run_id": "2928de59-06cb-4a25-8019-e4a95ab1c005_get_answer_correctness_report_0",
       "status": "Completed",
       "inputs": {
         "question": "What does it mean to boil water?",
@@ -226,12 +226,12 @@
           "bubbles"
         ]
       },
-      "output": "- TP: \"Boiling water means heating it until it reaches a temperature where it changes from a liquid to a gas, specifically at 100°C (212°F) at sea level.\" This statement is present in the answer and directly supported by the ground truth statements \"100°C (212°F) at sea level\" and \"liquid to gas\".\n- TP: \"This process is characterized by the formation of bubbles that rise to the surface and burst.\" This statement is present in the answer and directly supported by the ground truth statement \"bubbles\".\n- FP: \"Boiling is often used for cooking, sterilizing, and making beverages like tea or coffee. It’s a simple yet essential process in many daily activities.\" This statement is present in the answer but is not directly supported by any statement in the ground truth.\n- FN: There is no false negative in this example, as all relevant information in the ground truth is addressed in the answer.",
+      "output": "{\n    \"TP\": [\n        {\n            \"answer\": \"Boiling water means heating it until it reaches a temperature where it changes from a liquid to a gas, specifically at 100°C (212°F) at sea level.\",\n            \"reason\": \"Present in ground truth\"\n        },\n        {\n            \"answer\": \"This process is characterized by the formation of bubbles that rise to the surface and burst.\",\n            \"reason\": \"Present in ground truth\"\n        },\n        {\n            \"answer\": \"Boiling is often used for cooking, sterilizing, and making beverages like tea or coffee. It’s a simple yet essential process in many daily activities.\",\n            \"reason\": \"Present in ground truth\"\n        }\n    ],\n    \"FP\": [],\n    \"FN\": []\n}",
       "metrics": null,
       "error": null,
-      "parent_run_id": "b2071270-de56-4026-8524-7a556d594796_0",
-      "start_time": "2024-09-16T22:06:21.829037Z",
-      "end_time": "2024-09-16T22:06:23.899658Z",
+      "parent_run_id": "2928de59-06cb-4a25-8019-e4a95ab1c005_0",
+      "start_time": "2024-09-17T20:40:39.739514Z",
+      "end_time": "2024-09-17T20:40:42.091074Z",
       "index": 0,
       "api_calls": [
         {
@@ -246,9 +246,9 @@
               "bubbles"
             ]
           },
-          "output": "- TP: \"Boiling water means heating it until it reaches a temperature where it changes from a liquid to a gas, specifically at 100°C (212°F) at sea level.\" This statement is present in the answer and directly supported by the ground truth statements \"100°C (212°F) at sea level\" and \"liquid to gas\".\n- TP: \"This process is characterized by the formation of bubbles that rise to the surface and burst.\" This statement is present in the answer and directly supported by the ground truth statement \"bubbles\".\n- FP: \"Boiling is often used for cooking, sterilizing, and making beverages like tea or coffee. It’s a simple yet essential process in many daily activities.\" This statement is present in the answer but is not directly supported by any statement in the ground truth.\n- FN: There is no false negative in this example, as all relevant information in the ground truth is addressed in the answer.",
-          "start_time": 1726549581.829101,
-          "end_time": 1726549583.89932,
+          "output": "{\n    \"TP\": [\n        {\n            \"answer\": \"Boiling water means heating it until it reaches a temperature where it changes from a liquid to a gas, specifically at 100°C (212°F) at sea level.\",\n            \"reason\": \"Present in ground truth\"\n        },\n        {\n            \"answer\": \"This process is characterized by the formation of bubbles that rise to the surface and burst.\",\n            \"reason\": \"Present in ground truth\"\n        },\n        {\n            \"answer\": \"Boiling is often used for cooking, sterilizing, and making beverages like tea or coffee. It’s a simple yet essential process in many daily activities.\",\n            \"reason\": \"Present in ground truth\"\n        }\n    ],\n    \"FP\": [],\n    \"FN\": []\n}",
+          "start_time": 1726630839.739581,
+          "end_time": 1726630842.090735,
           "error": null,
           "children": [
             {
@@ -258,8 +258,8 @@
                 "model": "gpt-35-turbo",
                 "messages": [
                   {
-                    "role": "user",
-                    "content": "\n    Given a ground truth and an answer statements, analyze each statement and classify them in one of the following categories: \n\n        - TP (true positive): statements that are present in answer that are also directly supported by the one or more statements in ground truth,\n        - FP (false positive): statements present in the answer but not directly supported by any statement in ground truth,\n        - FN (false negative): statements found in the ground truth but not present in answer.\n\n    Each statement can only belong to one of the categories. Provide a reason for each classification.\n    "
+                    "role": "system",
+                    "content": "\n    {\n    \"Extract the following from the given question, answer and ground truth\": {\n        \"TP\": \"statements that are present in both the answer and the ground truth\",\n        \"FP\": \"statements present in the answer but not found in the ground truth\",\n        \"FN\": \"relevant statements found in the ground truth but omitted in the answer\"\n    },\n    \"Output in only valid JSON format\": {},\n    \"Output Examples\": [\n        {\n            {\n                \"TP\": [{\"answer\": \"<answer statement>\", \"reason\": \"<reason for categorization>\"}],\n                \"FP\": [{\"answer\": \"<answer statement>\", \"reason\": \"<reason for categorization>\"}],\n                \"FN\": [{\"answer\": \"<answer statement>\", \"reason\": \"<reason for categorization>\"}]\n            },\n            {\n                \"TP\": [{\"answer\": \"<answer statement>\", \"reason\": \"<reason for categorization>\"}],\n                \"FP\": [],\n                \"FN\": [{\"answer\": \"<answer statement>\", \"reason\": \"<reason for categorization>\"}]\n            }\n        }\n    ]\n    "
                   },
                   {
                     "role": "user",
@@ -268,14 +268,14 @@
                 ]
               },
               "output": {
-                "id": "chatcmpl-A8E9Ol9xINPtQPPJUmOKvMCfS7XKQ",
+                "id": "chatcmpl-A8ZI049ZuxI08AUT74sgVD3mxeLgP",
                 "choices": [
                   {
                     "finish_reason": "stop",
                     "index": 0,
                     "logprobs": null,
                     "message": {
-                      "content": "- TP: \"Boiling water means heating it until it reaches a temperature where it changes from a liquid to a gas, specifically at 100°C (212°F) at sea level.\" This statement is present in the answer and directly supported by the ground truth statements \"100°C (212°F) at sea level\" and \"liquid to gas\".\n- TP: \"This process is characterized by the formation of bubbles that rise to the surface and burst.\" This statement is present in the answer and directly supported by the ground truth statement \"bubbles\".\n- FP: \"Boiling is often used for cooking, sterilizing, and making beverages like tea or coffee. It’s a simple yet essential process in many daily activities.\" This statement is present in the answer but is not directly supported by any statement in the ground truth.\n- FN: There is no false negative in this example, as all relevant information in the ground truth is addressed in the answer.",
+                      "content": "{\n    \"TP\": [\n        {\n            \"answer\": \"Boiling water means heating it until it reaches a temperature where it changes from a liquid to a gas, specifically at 100°C (212°F) at sea level.\",\n            \"reason\": \"Present in ground truth\"\n        },\n        {\n            \"answer\": \"This process is characterized by the formation of bubbles that rise to the surface and burst.\",\n            \"reason\": \"Present in ground truth\"\n        },\n        {\n            \"answer\": \"Boiling is often used for cooking, sterilizing, and making beverages like tea or coffee. It’s a simple yet essential process in many daily activities.\",\n            \"reason\": \"Present in ground truth\"\n        }\n    ],\n    \"FP\": [],\n    \"FN\": []\n}",
                       "refusal": null,
                       "role": "assistant",
                       "function_call": null,
@@ -309,15 +309,15 @@
                     }
                   }
                 ],
-                "created": 1726524382,
+                "created": 1726605640,
                 "model": "gpt-35-turbo",
                 "object": "chat.completion",
                 "service_tier": null,
                 "system_fingerprint": null,
                 "usage": {
-                  "completion_tokens": 191,
-                  "prompt_tokens": 246,
-                  "total_tokens": 437,
+                  "completion_tokens": 158,
+                  "prompt_tokens": 352,
+                  "total_tokens": 510,
                   "completion_tokens_details": null
                 },
                 "prompt_filter_results": [
@@ -348,29 +348,29 @@
                   }
                 ]
               },
-              "start_time": 1726549581.836907,
-              "end_time": 1726549583.8992,
+              "start_time": 1726630839.747755,
+              "end_time": 1726630842.090618,
               "error": null,
               "children": [],
               "node_name": null,
-              "parent_id": "afc2c625-40ce-4559-b5c6-49c98a51620d",
-              "id": "a45f0dbb-d8c6-4ff1-b411-b9bd05636187",
+              "parent_id": "16641ddb-4eae-4dae-aec2-36246a31524e",
+              "id": "25d014db-e9b8-4e7e-a8fe-e1aea72579ee",
               "function": "openai.resources.chat.completions.Completions.create",
               "system_metrics": {
-                "completion_tokens": 191,
-                "prompt_tokens": 246,
-                "total_tokens": 437
+                "completion_tokens": 158,
+                "prompt_tokens": 352,
+                "total_tokens": 510
               }
             }
           ],
           "node_name": "get_answer_correctness_report",
           "parent_id": "",
-          "id": "afc2c625-40ce-4559-b5c6-49c98a51620d",
+          "id": "16641ddb-4eae-4dae-aec2-36246a31524e",
           "function": "get_answer_correctness_report",
           "system_metrics": {
-            "completion_tokens": 191,
-            "prompt_tokens": 246,
-            "total_tokens": 437
+            "completion_tokens": 158,
+            "prompt_tokens": 352,
+            "total_tokens": 510
           }
         }
       ],
@@ -381,12 +381,12 @@
         "stderr": ""
       },
       "system_metrics": {
-        "completion_tokens": 191,
-        "prompt_tokens": 246,
-        "total_tokens": 437,
-        "duration": 2.070621
+        "completion_tokens": 158,
+        "prompt_tokens": 352,
+        "total_tokens": 510,
+        "duration": 2.35156
       },
-      "result": "- TP: \"Boiling water means heating it until it reaches a temperature where it changes from a liquid to a gas, specifically at 100°C (212°F) at sea level.\" This statement is present in the answer and directly supported by the ground truth statements \"100°C (212°F) at sea level\" and \"liquid to gas\".\n- TP: \"This process is characterized by the formation of bubbles that rise to the surface and burst.\" This statement is present in the answer and directly supported by the ground truth statement \"bubbles\".\n- FP: \"Boiling is often used for cooking, sterilizing, and making beverages like tea or coffee. It’s a simple yet essential process in many daily activities.\" This statement is present in the answer but is not directly supported by any statement in the ground truth.\n- FN: There is no false negative in this example, as all relevant information in the ground truth is addressed in the answer.",
+      "result": "{\n    \"TP\": [\n        {\n            \"answer\": \"Boiling water means heating it until it reaches a temperature where it changes from a liquid to a gas, specifically at 100°C (212°F) at sea level.\",\n            \"reason\": \"Present in ground truth\"\n        },\n        {\n            \"answer\": \"This process is characterized by the formation of bubbles that rise to the surface and burst.\",\n            \"reason\": \"Present in ground truth\"\n        },\n        {\n            \"answer\": \"Boiling is often used for cooking, sterilizing, and making beverages like tea or coffee. It’s a simple yet essential process in many daily activities.\",\n            \"reason\": \"Present in ground truth\"\n        }\n    ],\n    \"FP\": [],\n    \"FN\": []\n}",
       "message_format": "basic"
     }
   ]
