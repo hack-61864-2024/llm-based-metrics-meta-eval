@@ -38,13 +38,6 @@ The goal of this repository is to evaluate the performance of some LLMs for the 
    python llmops/src/run_standard_flow.py --file answer_correctness_experiment.yaml --evaluate --output-file run_id.txt
    ```
 
-## Run the Answer Correctness Flow
-Run the answer correctness flow
-   ```
-   export PYTHONPATH="."
-   python llmops/src/run_standard_flow.py --file answer_correctness_experiment.yaml --evaluate --output-file run_id.txt
-   ```
-
 ## Getting the dataset
 
 We can use the [TruthfulQA dataset](https://github.com/sylinrl/TruthfulQA/blob/main/TruthfulQA.csv)
@@ -63,3 +56,10 @@ To run the [Answer Correctness](https://docs.ragas.io/en/latest/concepts/metrics
 ```
 python .\llmops\src\run_standard_flow.py --file .\answer_corectness_amnesty_qa.yaml
 ```
+
+## Run the Answer Correctness Flow with Evaluation
+Run the answer correctness flow. This flow is currently using dummy data.
+   ```
+   export PYTHONPATH="."
+   python llmops/src/run_standard_flow.py --file answer_correctness_experiment.yaml --evaluate --output-file run_id.txt
+   ```
