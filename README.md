@@ -33,7 +33,9 @@ The goal of this repository is to evaluate the performance of some LLMs for the 
 
 7. Run the hello-world flow
    ```
-   python .\llmops\src\run_standard_flow.py --file .\hello_world_experiment.yaml
+   export PYTHONPATH="."
+   python llmops/src/run_standard_flow.py --file hello_world_experiment.yaml
+   python llmops/src/run_standard_flow.py --file answer_correctness_experiment.yaml --evaluate --output-file run_id.txt
    ```
 
 
