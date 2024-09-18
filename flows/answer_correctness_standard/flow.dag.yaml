@@ -20,6 +20,9 @@ outputs:
   result:
     type: string
     reference: ${get_answer_correctness_report.output}
+  score:
+    type: string
+    reference: ${calculate_f1_score.output}
 nodes:
 - name: get_answer_correctness_report
   type: python
@@ -30,3 +33,10 @@ nodes:
     question: ${inputs.question}
     answer: ${inputs.answer}
     ground_truth: ${inputs.ground_truth}
+- name: calculate_f1_score
+  type: python
+  source:
+    type: code
+    path: calculate_f1_score.py
+  inputs:
+    result: ${get_answer_correctness_report.output}

@@ -22,6 +22,18 @@
       },
       "source": "get_answer_correctness_report.py",
       "function": "get_answer_correctness_report"
+    },
+    "calculate_f1_score.py": {
+      "type": "python",
+      "inputs": {
+        "result": {
+          "type": [
+            "string"
+          ]
+        }
+      },
+      "source": "calculate_f1_score.py",
+      "function": "my_python_tool"
     }
   }
 }

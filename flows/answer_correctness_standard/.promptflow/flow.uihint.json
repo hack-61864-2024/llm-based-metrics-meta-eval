@@ -8,6 +8,14 @@
           "ground_truth": []
         }
       }
+    },
+    "calculate_f1_score": {
+      "variant_0": {
+        "inputs": {
+          "input1": [],
+          "result": []
+        }
+      }
     }
   }
 }

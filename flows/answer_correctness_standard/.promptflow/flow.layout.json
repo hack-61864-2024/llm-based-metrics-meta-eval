@@ -7,13 +7,18 @@
     },
     "outputs": {
       "x": 220,
-      "y": 310,
+      "y": 444,
       "index": -1
     },
     "get_answer_correctness_report": {
       "x": 140,
       "y": 176,
       "index": 0
+    },
+    "calculate_f1_score": {
+      "x": 227.5,
+      "y": 310,
+      "index": 1
     }
   },
   "orientation": "Vertical"
