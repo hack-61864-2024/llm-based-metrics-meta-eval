@@ -38,7 +38,13 @@ system_template_correctness = """
 
 @tool
 def correctness_evaluator(question: str, answer: str, ground_truth: str) -> str:
-    user_content = f'{{"question": {question},"answer": {answer},"ground_truth": {ground_truth}}}'
+    user_content = f"""
+    {{
+        "question": {question},
+        "answer": {answer},
+        "ground_truth": {ground_truth}
+    }}
+    """
     
     client = AzureOpenAI(
         azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
