@@ -9,3 +9,12 @@ datasets:
     question: ${data.question}
     answer: ${data.answer}
     ground_truth: ${data.ground_truth}
+    ground_truth_report: ${data.ground_truth_report}
+evaluators:
+- name: answer_correctness_meta_eval
+  flow: flows/answer_correctness_evaluation
+  datasets:
+  - name: answer_correctness_dataset
+    mappings:
+      groundtruth: ${data.ground_truth_report}
+      prediction: ${run.outputs.result}

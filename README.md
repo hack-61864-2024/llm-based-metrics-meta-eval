@@ -38,6 +38,12 @@ The goal of this repository is to evaluate the performance of some LLMs for the 
    python llmops/src/run_standard_flow.py --file answer_correctness_experiment.yaml --evaluate --output-file run_id.txt
    ```
 
+## Run the Answer Correctness Flow
+Run the answer correctness flow
+   ```
+   export PYTHONPATH="."
+   python llmops/src/run_standard_flow.py --file answer_correctness_experiment.yaml --evaluate --output-file run_id.txt
+   ```
 
 ## Getting the dataset
 
