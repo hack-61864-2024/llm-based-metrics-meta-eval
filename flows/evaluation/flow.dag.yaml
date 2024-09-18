@@ -1,0 +1,35 @@
+$schema: https://azuremlschemas.azureedge.net/promptflow/latest/Flow.schema.json
+environment:
+  python_requirements_txt: requirements.txt
+inputs:
+  question:
+    type: string
+    default: test
+  answer:
+    type: string
+    default: test
+  ground_truth:
+    type: string
+    default: '["test"'
+outputs:
+  results:
+    type: int
+    reference: ${correctness_evaluation.output}
+nodes:
+- name: correctness_evaluation
+  type: python
+  source:
+    type: code
+    path: correctness_evaluation.py
+  inputs:
+    question: ${inputs.question}
+    answer: ${inputs.answer}
+    ground_truth: ${inputs.ground_truth}
+- name: aggregate
+  type: python
+  source:
+    type: code
+    path: aggregate.py
+  inputs:
+    processed_results: ${correctness_evaluation.output}
+  aggregation: true

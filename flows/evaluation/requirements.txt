@@ -1,0 +1,11 @@
+promptflow==1.11.0
+promptflow-azure==1.11.0
+promptflow-core==1.11.0
+promptflow-devkit==1.11.0
+promptflow-tools==1.4.0
+promptflow-tracing==1.11.0
+ragas==0.1.4
+pydantic_settings==2.2.1
+scikit-learn==1.4.2
+langchain==0.1.12
+langchain-openai==0.0.8

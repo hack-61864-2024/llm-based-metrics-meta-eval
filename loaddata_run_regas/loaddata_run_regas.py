@@ -1,10 +1,10 @@
-parquetpath = './test-00000-of-00001.parquet' # using data from https://huggingface.co/datasets/MichaelR207/enron_qa_0822  test-00000-of-00001.parquet
-
 from configure_azure import configure_azure 
-from loaddata_run_regas.data_enron import load_enron
+from data_enron import load_enron
+from data_amnesty import load_amnesty
 
 azure_model, azure_embeddings = configure_azure()
-transformed_df = load_enron()
+#transformed_df = load_enron()
+transformed_df = load_amnesty()
 
 
 #### - RAGAS EVALUATION - ====
@@ -19,7 +19,7 @@ from ragas.metrics import (
 from ragas.metrics.critique import harmfulness
 from ragas.evaluation import evaluate
 
-number_of_records = 2
+number_of_records = 10
 print("STARTING EVALUATION")
 print(f"Evaluating {number_of_records} records")
 dataset = Dataset.from_pandas(transformed_df.head(number_of_records))

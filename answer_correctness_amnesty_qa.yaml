@@ -1,0 +1,11 @@
+name: answer_correctness_evaluation_flow
+flow: flows/evaluation
+
+datasets:
+- name: answer_correctness_amnesty_qa_dataset
+  source: ./data/amnesty_qa.jsonl
+  description: "Answer Correctness Amnesty QA"
+  mappings:
+    question: ${data.question}
+    answer: ${data.answer}
+    ground_truth: ${data.ground_truth}
