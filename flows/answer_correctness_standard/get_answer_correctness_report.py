@@ -22,19 +22,33 @@ def get_answer_correctness_report(question: str, answer: str, ground_truth: list
     )
 
     prompt = """
-    Given a ground truth and an answer statements, analyze each statement and classify them in one of the following categories: 
-
-        - TP (true positive): statements that are present in answer that are also directly supported by the one or more statements in ground truth,
-        - FP (false positive): statements present in the answer but not directly supported by any statement in ground truth,
-        - FN (false negative): statements found in the ground truth but not present in answer.
-
-    Each statement can only belong to one of the categories. Provide a reason for each classification.
+    {
+    "Extract the following from the given question, answer and ground truth": {
+        "TP": "statements that are present in both the answer and the ground truth",
+        "FP": "statements present in the answer but not found in the ground truth",
+        "FN": "relevant statements found in the ground truth but omitted in the answer"
+    },
+    "Output in only valid JSON format": {},
+    "Output Examples": [
+        {
+            {
+                "TP": [{"answer": "<answer statement>", "reason": "<reason for categorization>"}],
+                "FP": [{"answer": "<answer statement>", "reason": "<reason for categorization>"}],
+                "FN": [{"answer": "<answer statement>", "reason": "<reason for categorization>"}]
+            },
+            {
+                "TP": [{"answer": "<answer statement>", "reason": "<reason for categorization>"}],
+                "FP": [],
+                "FN": [{"answer": "<answer statement>", "reason": "<reason for categorization>"}]
+            }
+        }
+    ]
     """
 
     response = client.chat.completions.create(
         model=model_data.model_name,
         messages=[
-            {"role": "user", "content": prompt},
+            {"role": "system", "content": prompt},
             {"role": "user", "content": f"question: {question}, answer: {answer}, ground truth: {ground_truth}" },
         ],
     )

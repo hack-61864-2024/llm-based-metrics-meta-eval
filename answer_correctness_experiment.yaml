@@ -1,0 +1,11 @@
+name: answer_correctness_standard_flow
+flow: flows/answer_correctness_standard
+
+datasets:
+- name: answer_correctness_dataset
+  source: ./data/answer_correctness.jsonl
+  description: "Answer Correctness dataset"
+  mappings:
+    question: ${data.question}
+    answer: ${data.answer}
+    ground_truth: ${data.ground_truth}
