@@ -46,3 +46,12 @@ We can use the [TruthfulQA dataset](https://github.com/sylinrl/TruthfulQA/blob/m
    ```
    python .\helpers\csv_to_jsonl.py ..\path\to\your\TruthfulQA.csv truthfulqa.jsonl
    ```
+
+## Running Answer Correctness flow
+
+To run the [Answer Correctness](https://docs.ragas.io/en/latest/concepts/metrics/answer_correctness.html) flow on the [Amnesty QA data](https://huggingface.co/datasets/explodinggradients/amnesty_qa), run the following, from within the virtual environment:
+
+>Note: This requires both a GPT-3 **and** an embeddings model deployed.
+```
+python .\llmops\src\run_standard_flow.py --file .\answer_corectness_amnesty_qa.yaml
+```

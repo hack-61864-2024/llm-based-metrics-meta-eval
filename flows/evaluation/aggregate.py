@@ -3,9 +3,7 @@
 # ---------------------------------------------------------
 
 from typing import List
-
 from promptflow.core import log_metric, tool
-
 
 @tool
 def aggregate(processed_results: List[float]) -> float:
@@ -15,12 +13,11 @@ def aggregate(processed_results: List[float]) -> float:
     :param processed_results: List of the output of correctness_evaluation node.
     """
 
-    # Add your aggregation logic here
-    # Aggregate the results of all lines and calculate the accuracy
+    # Aggregate the results of all lines and calculate the average
     sum_correctness = sum(processed_results)
     aggregated_result = round((sum_correctness / len(processed_results)), 2)
 
-    # Log metric the aggregate result
+    # Log the metric to mlflow
     log_metric(key="average_correctness", value=aggregated_result)
 
     return aggregated_result

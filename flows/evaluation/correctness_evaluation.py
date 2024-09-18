@@ -3,12 +3,11 @@
 # ---------------------------------------------------------
 import os
 from promptflow.core import tool
-from ragas.metrics import faithfulness, answer_correctness
+from ragas.metrics import answer_correctness
 from datasets import Dataset
 from ragas import evaluate
 from langchain_openai.chat_models import AzureChatOpenAI
 from langchain_openai.embeddings import AzureOpenAIEmbeddings
-from datasets import load_dataset
 
 @tool
 def evaluate_correctness(question: str, answer: str, ground_truth: str) -> float:
