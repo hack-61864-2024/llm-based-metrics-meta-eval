@@ -9,3 +9,4 @@ pydantic_settings==2.2.1
 scikit-learn==1.4.2
 langchain==0.1.12
 langchain-openai==0.0.8
+azure-mgmt-cognitiveservices==13.5.0

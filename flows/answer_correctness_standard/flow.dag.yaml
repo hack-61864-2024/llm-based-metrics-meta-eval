@@ -16,6 +16,11 @@ inputs:
     - 100°C (212°F) at sea level
     - liquid to gas
     - bubbles
+  model:
+    type: string
+    dynamic_list:
+      func_path: models.get_models
+    default: gpt-35-turbo
 outputs:
   result:
     type: string
@@ -30,3 +35,4 @@ nodes:
     question: ${inputs.question}
     answer: ${inputs.answer}
     ground_truth: ${inputs.ground_truth}
+    model: ${inputs.model}

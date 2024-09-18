@@ -1,4 +1,5 @@
 
+from models import get_models
 import os
 from openai import AzureOpenAI
 from promptflow import tool
@@ -8,11 +9,16 @@ from promptflow import tool
 # Adding type to arguments and return value will help the system show the types properly
 # Please update the function name/signature per need
 @tool
-def get_answer_correctness_report(question: str, answer: str, ground_truth: list) -> str:
+def get_answer_correctness_report(question: str, answer: str, ground_truth: list, model: str) -> str:
+    models = get_models()
+    assert model in models, f"Model {model} not found"
+
+    model_data = models[model]
+
     client = AzureOpenAI(
-        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT"),
+        azure_endpoint=model_data.endpoint,
         api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-        api_version="2024-02-15-preview",
+        api_version=model_data.api_version,
     )
 
     prompt = """
@@ -26,7 +32,7 @@ def get_answer_correctness_report(question: str, answer: str, ground_truth: list
     """
 
     response = client.chat.completions.create(
-        model="gpt-35-turbo",  # model = "deployment_name".
+        model=model_data.model_name,
         messages=[
             {"role": "user", "content": prompt},
             {"role": "user", "content": f"question: {question}, answer: {answer}, ground truth: {ground_truth}" },
